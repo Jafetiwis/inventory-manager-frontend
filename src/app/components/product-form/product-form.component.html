@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <div class="card shadow border-0">
+    <div class="card-header bg-primary text-white p-3">
+      <h4 class="mb-0">Nuevo Producto</h4>
+    </div>
+    <div class="card-body p-4">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">SKU</label>
+            <input type="text" formControlName="sku" class="form-control" placeholder="Ej: LAP-005">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Nombre del Producto</label>
+            <input type="text" formControlName="name" class="form-control">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Precio</label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input type="number" formControlName="price" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Cantidad Inicial</label>
+            <input type="number" formControlName="stockQuantity" class="form-control">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Stock Mínimo (Alerta)</label>
+            <input type="number" formControlName="minStock" class="form-control">
+          </div>
+        </div>
+
+        <div class="text-end mt-3">
+          <button type="button" 
+        (click)= "cancelar()" class="btn btn-secondary me-2">Cancelar</button>
+          <button type="submit" [disabled]="productForm.invalid" class="btn btn-success px-4">
+            Guardar Producto
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

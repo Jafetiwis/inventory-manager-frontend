@@ -1,0 +1,43 @@
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <div class="bg-dark text-white shadow" id="sidebar-wrapper" [class.collapsed]="isSidebarCollapsed">
+    <div class="sidebar-heading d-flex align-items-center justify-content-between px-3">
+      <span *ngIf="!isSidebarCollapsed" class="fw-bold">InvManager</span>
+      <button class="btn text-white p-0 border-0" (click)="toggleSidebar()">
+        <i class="bi bi-list fs-4"></i>
+      </button>
+    </div>
+    
+    <div class="list-group list-group-flush p-3">
+      <a routerLink="/dashboard" class="nav-link text-white mb-3" routerLinkActive="active-link">
+        <i class="bi bi-speedometer2 fs-5"></i>
+        @if (!isSidebarCollapsed) {
+        <span class="ms-3">Panel de control</span>
+        }
+      </a>
+    
+      <a routerLink="/productos" class="nav-link text-white" routerLinkActive="active-link">
+        <i class="bi bi-box-seam fs-5"></i>
+        @if (!isSidebarCollapsed) {
+        <span class="ms-3">Inventario</span>
+        }
+      </a>
+    </div>
+  </div>
+
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-light bg-white shadow-sm p-2">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1 text-muted fs-6">
+          Sistema de Inventarios
+        </span>
+      </div>
+    </nav>
+    
+    <div class="container-fluid p-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<app-toast></app-toast>

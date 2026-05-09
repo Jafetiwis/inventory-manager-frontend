@@ -1,0 +1,9 @@
+@if (isVisible) {
+  <div class="custom-toast" [ngClass]="type">
+    <div class="toast-content">
+      <i class="bi" [ngClass]="type === 'success' ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill'"></i>
+      <span>{{ message }}</span>
+    </div>
+    <button (click)="isVisible = false" class="btn-close btn-close-white"></button>
+  </div>
+}

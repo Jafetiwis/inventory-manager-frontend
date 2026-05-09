@@ -1,0 +1,101 @@
+<div class="dashboard-wrapper p-4">
+  <!-- Cabecera Estilo Shadcn -->
+  <div class="d-flex justify-content-between align-items-end mb-5">
+    <div>
+      <h1 class="display-6 fw-bold text-white mb-1">Panel de Control</h1>
+      <p class="text-secondary mb-0">Control y gestión de ingresos, gastos y existencias</p>
+    </div>
+    
+    <button routerLink="/nuevo-producto" class="btn btn-primary shadow-sm px-4 py-2 fw-bold custom-btn">
+      <i class="bi bi-plus-lg me-2"></i> Nuevo Registro
+    </button>
+  </div>
+
+  <!-- Tarjetas de Resumen (Kpis) -->
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="kpi-card shadow-sm">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-start">
+            <h6 class="text-uppercase text-secondary small fw-bold">Total Productos</h6>
+            <i class="bi bi-box-seam text-primary fs-4"></i>
+          </div>
+          <h2 class="display-6 fw-bold text-white mt-2">{{ totalProducts }}</h2>
+          <p class="text-muted small mb-0">+{{ totalProducts }} registros activos</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="kpi-card shadow-sm" [class.border-danger-subtle]="lowStockCount > 0">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-start">
+            <h6 class="text-uppercase text-secondary small fw-bold">Alertas de Stock</h6>
+            <i class="bi bi-exclamation-triangle fs-4" [ngClass]="lowStockCount > 0 ? 'text-danger' : 'text-success'"></i>
+          </div>
+          <h2 class="display-6 fw-bold text-white mt-2">{{ lowStockCount }}</h2>
+          <p class="small mb-0" [ngClass]="lowStockCount > 0 ? 'text-danger' : 'text-success'">
+            {{ lowStockCount > 0 ? 'Requiere reabastecimiento' : 'Stock saludable' }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="kpi-card shadow-sm">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-start">
+            <h6 class="text-uppercase text-secondary small fw-bold">Valor del Inventario</h6>
+            <i class="bi bi-currency-dollar text-success fs-4"></i>
+          </div>
+          <h2 class="display-6 fw-bold text-white mt-2">{{ totalInventoryValue | currency }}</h2>
+          <p class="text-muted small mb-0">Basado en precios actuales</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Gráficas -->
+  <div class="row g-4">
+    <div class="col-md-8">
+      <div class="chart-card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 class="text-white fw-bold mb-0">Distribución por Categoría</h5>
+          <span class="badge bg-dark text-secondary border border-secondary px-3">mayo de 2026</span>
+        </div>
+        
+        <!-- El componente de ApexCharts reemplaza al canvas -->
+        @if (chartOptions) {
+          <apx-chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [xaxis]="chartOptions.xaxis"
+            [yaxis]="chartOptions.yaxis"
+            [plotOptions]="chartOptions.plotOptions"
+            [colors]="chartOptions.colors"
+            [grid]="chartOptions.grid"
+            [tooltip]="chartOptions.tooltip"
+            [theme]="chartOptions.theme">
+          </apx-chart>
+        }
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="chart-card p-4 h-100">
+        <h5 class="text-white fw-bold mb-4">Recomendaciones AI</h5>
+        <div class="suggestion-item p-3 mb-3 border-start border-primary border-4 bg-dark">
+          <p class="text-light small mb-0">
+            Tienes <strong>{{ lowStockCount }}</strong> productos por debajo del límite mínimo. 
+            Te sugerimos generar una orden de compra pronto.
+          </p>
+        </div>
+        <div class="suggestion-item p-3 border-start border-success border-4 bg-dark">
+          <p class="text-light small mb-0">
+            El valor de tu inventario ha crecido. Revisa si tus precios están actualizados con la inflación.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <!-- Encabezado con título y botón de agregar -->
+  <div class="row mb-4 align-items-center">
+    <div class="col">
+      <h2 class="text-primary">Inventario de Productos</h2>
+    </div>
+    <div class="col-auto">
+      <button routerLink="/nuevo-producto" class="btn btn-warning fw-bold shadow">
+        + AGREGAR PRODUCTO
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabla de inventario con estilo oscuro -->
+  <div class="card shadow-sm border-0 bg-dark text-white">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-dark table-hover mb-0">
+          <thead>
+            <tr>
+              <th class="ps-4">SKU</th>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Estado</th>
+              <th>Categoría</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Iteración de productos -->
+            <tr *ngFor="let p of products">
+              <td class="ps-4"><strong>{{ p.sku }}</strong></td>
+              <td>{{ p.name }}</td>
+              <td>{{ p.price | currency }}</td>
+              <td>{{ p.stockQuantity }}</td>
+              <td>
+                <span class="badge" [ngClass]="p.stockQuantity <= p.minStock ? 'bg-danger' : 'bg-success'">
+                  {{ p.stockQuantity <= p.minStock ? 'Reabastecer' : 'OK' }}
+                </span>
+              </td>
+              <td>{{ p.categoryName || 'Sin Categoría' }}</td>
+              <td class="text-center">
+                <!-- Botón de eliminar corregido para usar p.id -->
+                <button class="btn btn-link text-danger p-0" (click)="eliminarProducto(p.id!)">
+                  <i class="bi bi-trash3-fill"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
