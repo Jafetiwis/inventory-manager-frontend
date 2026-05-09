@@ -1,5 +1,4 @@
 <div class="container mt-4">
-  <!-- Encabezado con título y botón de agregar -->
   <div class="row mb-4 align-items-center">
     <div class="col">
       <h2 class="text-primary">Inventario de Productos</h2>
@@ -11,7 +10,6 @@
     </div>
   </div>
 
-  <!-- Tabla de inventario con estilo oscuro -->
   <div class="card shadow-sm border-0 bg-dark text-white">
     <div class="card-body p-0">
       <div class="table-responsive">
@@ -28,7 +26,6 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Iteración de productos -->
             <tr *ngFor="let p of products">
               <td class="ps-4"><strong>{{ p.sku }}</strong></td>
               <td>{{ p.name }}</td>
@@ -41,7 +38,6 @@
               </td>
               <td>{{ p.categoryName || 'Sin Categoría' }}</td>
               <td class="text-center">
-                <!-- Botón de eliminar corregido para usar p.id -->
                 <button class="btn btn-link text-danger p-0" (click)="eliminarProducto(p.id!)">
                   <i class="bi bi-trash3-fill"></i>
                 </button>

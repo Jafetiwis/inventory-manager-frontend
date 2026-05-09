@@ -29,12 +29,10 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  // Nombre actualizado para coincidir con el (click) del HTML
   eliminarProducto(id: number) {
     if (confirm('¿Deseas eliminar este producto?')) {
       this.productService.deleteProduct(id).subscribe({
         next: () => {
-          // Filtramos la lista local para remover el producto borrado sin recargar
           this.products = this.products.filter(p => p.id !== id);
           console.log('Producto eliminado correctamente con ID:', id);
         },

@@ -1,11 +1,11 @@
 .dashboard-wrapper {
-  background-color: #0f172a !important; /* Azul oscuro profundo (estilo Shadcn) */
+  background-color: #0f172a !important;
   min-height: 100vh;
-  color: #f8fafc; /* Color de texto claro por defecto */
+  color: #f8fafc; 
 }
 
 .kpi-card, .chart-card {
-  background-color: #1e293b !important; /* Un tono un poco más claro para las tarjetas */
+  background-color: #1e293b !important; 
   border: 1px solid #334155;
   border-radius: 12px;
 }
@@ -15,7 +15,6 @@
   border-color: #334155;
 }
 
-/* Tarjeta de Gráfica */
 .chart-card {
   background-color: #020817;
   border: 1px solid #1e293b;
@@ -23,7 +22,6 @@
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
 }
 
-/* Botón personalizado */
 .custom-btn {
   background-color: #f8fafc;
   color: #020817;
@@ -36,12 +34,10 @@
   color: #020817;
 }
 
-/* Sugerencias estilo terminal/moderno */
 .suggestion-item {
   border-radius: 0 8px 8px 0;
 }
 
-/* Tipografía */
 h1, h2, h5, h6 {
   font-family: 'Inter', sans-serif;
   letter-spacing: -0.025em;
