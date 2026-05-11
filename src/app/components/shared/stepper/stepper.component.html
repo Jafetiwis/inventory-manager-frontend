@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <div class="stepper-wrapper d-flex justify-content-around mb-5">
+        <div class="stepper-item" [class.active]="currentStep >= 1">
+            <div class="step-counter">1</div>
+            <div class="step-name">Registro de Producto</div>
+        </div>
+        <div class="stepper-item" [class.active]="currentStep >= 2">
+            <div class="step-counter">2</div>
+            <div class="step-name">Confirmación en Inventario</div>
+        </div>
+    </div>
+
+    <div class="step-content p-4 rounded shadow-lg bg-dark-card">
+
+        <div *ngIf="currentStep === 1">
+            <app-product-form (onSuccess)="goToStep(2)"></app-product-form>
+        </div>
+
+        <div *ngIf="currentStep === 2">
+            <div
+                class="alert alert-success bg-dark border-success text-success d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <span class="fw-bold">¡Producto guardado exitosamente!</span>
+                    <p class="mb-0 small text-secondary-light">El registro ya está disponible en el inventario.</p>
+                </div>
+                <button class="btn btn-outline-success btn-sm fw-bold shadow-sm" (click)="goToStep(1)">
+                    <i class="bi bi-plus-lg me-1"></i> REGISTRAR OTRO
+                </button>
+            </div>
+
+            <app-product-list [isStepperMode]="true"></app-product-list>
+        </div>
+
+    </div>
+</div>

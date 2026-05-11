@@ -1,0 +1,23 @@
+.bg-dark-card {
+  background-color: #1e293b;
+  border-radius: 12px;
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
+}
+
+.text-secondary-light {
+  color: #94a3b8;
+  font-size: 1.05rem;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  border: none;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

@@ -1,0 +1,27 @@
+<div class="modal-backdrop fade show" *ngIf="isVisible"></div>
+
+<div class="modal fade show" [style.display]="isVisible ? 'block' : 'none'" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-dark-card border-secondary text-white shadow-lg">
+      
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title fw-bold">{{ title }}</h5>
+        <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="onCancel()"></button>
+      </div>
+
+      <div class="modal-body py-3">
+        <p class="text-secondary-light">{{ message }}</p>
+      </div>
+
+      <div class="modal-footer border-top-0">
+        <button type="button" class="btn btn-outline-light px-4" (click)="onCancel()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-danger px-4" (click)="onConfirm()">
+          Eliminar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

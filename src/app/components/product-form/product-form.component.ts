@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core'; // Añadimos Output y EventEmitter
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
@@ -12,6 +12,8 @@ import { NotificationService } from '../../services/notification.service';
   templateUrl: './product-form.component.html'
 })
 export class ProductFormComponent {
+  @Output() onSuccess = new EventEmitter<void>();
+
   productForm: FormGroup;
 
   constructor(
@@ -23,16 +25,16 @@ export class ProductFormComponent {
     this.productForm = this.fb.group({
       sku: ['', [Validators.required, Validators.minLength(3)]],
       name: ['', Validators.required],
-      price: [0, [Validators.required, Validators.min(0.1)]],
-      stockQuantity: [0, [Validators.required, Validators.min(0)]],
-      minStock: [0, Validators.required],
+      price: [null, [Validators.required, Validators.min(0.1)]],
+      stockQuantity: [null, [Validators.required, Validators.min(0)]],
+      minStock: [null, Validators.required],
       categoryId: [1, Validators.required] 
     });
   }
 
   cancelar() {
-  this.router.navigate(['/dashboard']);
-}
+    this.router.navigate(['/dashboard']);
+  }
 
   onSubmit() {
     if (this.productForm.valid) {
@@ -40,13 +42,16 @@ export class ProductFormComponent {
         next: () => {
           this.notifyService.showSuccess('¡Producto guardado con éxito!');
           
-          this.router.navigate(['/productos']); 
+          this.onSuccess.emit();
+          
         },
         error: (err) => {
           console.error('Error al guardar', err);
           this.notifyService.showError('No se pudo guardar el producto');
         }
       });
+    } else {
+      this.productForm.markAllAsTouched();
     }
   }
 }
